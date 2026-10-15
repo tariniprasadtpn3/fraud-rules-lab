@@ -1,1 +1,45 @@
 # fraud-rules-lab
+
+A small, learning-focused lab for building a **fraud-detection rule engine** on
+**synthetic transaction data**. Each rule is implemented in a batch style and a
+streaming style so the two approaches can be compared side by side.
+
+> All data in this repository is synthetic and all rules are generic,
+> textbook examples. Nothing here comes from any employer or client.
+
+## Goals
+
+- Build a clean, testable rule interface for transaction-level fraud checks.
+- Generate reproducible synthetic transactions (fixed seed) with injected fraud patterns.
+- Implement common rules, such as velocity, amount spikes, geo mismatch and
+  dormant-account reactivation, one at a time with unit tests.
+- Compare batch and streaming-style execution of the same rules.
+- Measure rule quality with precision and recall on the injected patterns.
+
+## Planned layout
+
+```
+fraud-rules-lab/
+├── src/
+│   ├── generator/   # synthetic transaction generator
+│   ├── rules/       # rule interface and individual rules
+│   ├── batch/       # batch runner
+│   └── stream/      # streaming-style runner
+├── tests/           # unit tests, one module per rule
+└── docs/            # design notes and examples
+```
+
+## Status
+
+Early stage. The layout above is the plan, and folders are added as the
+corresponding code lands.
+
+## Roadmap
+
+1. Synthetic transaction generator with a fixed seed
+2. Rule interface plus first rule, with tests
+3. More rules, one at a time
+4. Batch runner that applies all rules and outputs flagged transactions
+5. Streaming-style runner
+6. Evaluation metrics (precision and recall)
+7. Docs and examples
