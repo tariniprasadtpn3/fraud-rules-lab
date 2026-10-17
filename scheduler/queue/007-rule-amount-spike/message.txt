@@ -1,0 +1,1 @@
+feat(rules): add amount-spike rule (amount far above recent average)

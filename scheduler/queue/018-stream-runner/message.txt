@@ -1,0 +1,1 @@
+feat(stream): add streaming-style runner with bounded per-account state

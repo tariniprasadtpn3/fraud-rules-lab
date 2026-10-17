@@ -1,0 +1,1 @@
+test(rules): add unit tests for the amount-spike rule

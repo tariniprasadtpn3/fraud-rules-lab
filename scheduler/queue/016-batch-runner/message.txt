@@ -1,0 +1,1 @@
+feat(batch): add batch runner that applies all rules over the full dataset
