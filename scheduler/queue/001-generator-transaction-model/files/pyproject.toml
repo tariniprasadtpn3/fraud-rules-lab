@@ -1,0 +1,9 @@
+[project]
+name = "fraud-rules-lab"
+version = "0.1.0"
+description = "Learning lab for fraud-detection rules on synthetic transaction data"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

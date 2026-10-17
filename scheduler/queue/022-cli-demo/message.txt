@@ -1,0 +1,1 @@
+feat(cli): add end-to-end demo that runs batch vs streaming and prints metrics

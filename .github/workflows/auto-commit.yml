@@ -1,0 +1,44 @@
+name: auto-commit
+
+# Runs every 20 minutes between 08:30 and 22:30 IST (03:00-16:59 UTC).
+# scheduler/run.py decides whether a commit is due: 2-3 per day at random
+# times between 09:00 and 21:30 IST. Most runs exit immediately.
+on:
+  schedule:
+    - cron: "*/20 3-16 * * *"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Commit the next queued step now, ignoring today's plan"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: auto-commit
+  cancel-in-progress: false
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run scheduler
+        env:
+          # Override with repository variables COMMIT_NAME / COMMIT_EMAIL if needed.
+          # The default noreply address links commits to the account owner so they
+          # show on the contribution graph without exposing a personal email.
+          GIT_AUTHOR_NAME: ${{ vars.COMMIT_NAME || github.repository_owner }}
+          GIT_AUTHOR_EMAIL: ${{ vars.COMMIT_EMAIL || format('{0}+{1}@users.noreply.github.com', github.repository_owner_id, github.repository_owner) }}
+          GIT_COMMITTER_NAME: ${{ vars.COMMIT_NAME || github.repository_owner }}
+          GIT_COMMITTER_EMAIL: ${{ vars.COMMIT_EMAIL || format('{0}+{1}@users.noreply.github.com', github.repository_owner_id, github.repository_owner) }}
+          FORCE: ${{ inputs.force }}
+        run: |
+          if [ "$FORCE" = "true" ]; then
+            python3 scheduler/run.py --push --force
+          else
+            python3 scheduler/run.py --push
+          fi
