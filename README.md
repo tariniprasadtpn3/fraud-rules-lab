@@ -31,15 +31,23 @@ fraud-rules-lab/
 
 ## Status
 
-Early stage. The layout above is the plan, and folders are added as the
-corresponding code lands.
+Early stage. The synthetic transaction generator is done (`src/generator`,
+see `docs/generator.md`). Other folders are added as the corresponding code
+lands.
 
 ## Roadmap
 
-1. Synthetic transaction generator with a fixed seed
-2. Rule interface plus first rule, with tests
-3. More rules, one at a time
-4. Batch runner that applies all rules and outputs flagged transactions
-5. Streaming-style runner
-6. Evaluation metrics (precision and recall)
-7. Docs and examples
+1. [x] Synthetic transaction generator with a fixed seed
+2. [ ] Rule interface plus first rule, with tests
+3. [ ] More rules, one at a time
+4. [ ] Batch runner that applies all rules and outputs flagged transactions
+5. [ ] Streaming-style runner
+6. [ ] Evaluation metrics (precision and recall)
+7. [ ] Docs and examples
+
+## Running the tests
+
+```
+pip install pytest
+pytest
+```
