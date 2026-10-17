@@ -1,1 +1,0 @@
-docs: record an example run and what it shows about each rule

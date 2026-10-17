@@ -1,1 +1,0 @@
-test(batch): add tests for the batch runner
