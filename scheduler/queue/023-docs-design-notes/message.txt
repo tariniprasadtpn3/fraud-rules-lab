@@ -1,1 +1,0 @@
-docs: add design notes on the rule contract and batch/streaming parity

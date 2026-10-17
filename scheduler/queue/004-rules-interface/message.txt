@@ -1,1 +1,0 @@
-feat(rules): add Rule interface, Flag type and window helper

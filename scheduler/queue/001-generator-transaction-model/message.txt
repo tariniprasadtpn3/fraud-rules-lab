@@ -1,1 +1,0 @@
-feat(generator): add Transaction model and project scaffolding
