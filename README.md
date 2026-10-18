@@ -31,14 +31,15 @@ fraud-rules-lab/
 
 ## Status
 
-Early stage. The synthetic transaction generator is done (`src/generator`,
-see `docs/generator.md`). Other folders are added as the corresponding code
+Early stage. The synthetic transaction generator (`src/generator`, see
+`docs/generator.md`) and the rule interface with the first rule, velocity
+(`src/rules`), are done. Other folders are added as the corresponding code
 lands.
 
 ## Roadmap
 
 1. [x] Synthetic transaction generator with a fixed seed
-2. [ ] Rule interface plus first rule, with tests
+2. [x] Rule interface plus first rule (velocity), with tests
 3. [ ] More rules, one at a time
 4. [ ] Batch runner that applies all rules and outputs flagged transactions
 5. [ ] Streaming-style runner
