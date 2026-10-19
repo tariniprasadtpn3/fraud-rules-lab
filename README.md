@@ -33,7 +33,7 @@ fraud-rules-lab/
 
 Early stage. The synthetic transaction generator (`src/generator`, see
 `docs/generator.md`) and the rule interface with the rules velocity, amount
-spike, geo mismatch and dormant-account reactivation (`src/rules`), and the batch runner (`src/batch`, `run_batch`) are done. Other folders are added as the corresponding code
+spike, geo mismatch and dormant-account reactivation (`src/rules`), the batch runner (`src/batch`, `run_batch`) and the streaming-style runner (`src/stream`, `StreamProcessor`, `run_stream`) are done. Other folders are added as the corresponding code
 lands.
 
 ## Roadmap
@@ -42,7 +42,7 @@ lands.
 2. [x] Rule interface plus first rule (velocity), with tests
 3. [x] More rules, one at a time (amount spike, geo mismatch, dormant-account reactivation)
 4. [x] Batch runner that applies all rules and outputs flagged transactions
-5. [ ] Streaming-style runner
+5. [x] Streaming-style runner
 6. [ ] Evaluation metrics (precision and recall)
 7. [ ] Docs and examples
 
