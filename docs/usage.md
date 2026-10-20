@@ -22,6 +22,8 @@ flagged = run_batch(txns)            # or: list(run_stream(sorted_txns))
 metrics = evaluate(txns, flagged)    # {"overall": Metrics, "<rule>": Metrics, ...}
 ```
 
+See `docs/rules.md` for each rule's parameters and defaults.
+
 ## Adding a rule
 
 Subclass `src.rules.Rule`, give it a `name` equal to the `fraud_pattern` it
