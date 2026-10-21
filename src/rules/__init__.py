@@ -4,6 +4,7 @@ from .dormant_reactivation import DormantReactivationRule
 from .geo_mismatch import GeoMismatchRule
 from .high_amount import HighAmountRule
 from .night_hours import NightHoursRule
+from .round_amount import RoundAmountRule
 from .velocity import VelocityRule
 
 __all__ = [
@@ -12,6 +13,7 @@ __all__ = [
     "GeoMismatchRule",
     "HighAmountRule",
     "NightHoursRule",
+    "RoundAmountRule",
     "Rule",
     "VelocityRule",
 ]
