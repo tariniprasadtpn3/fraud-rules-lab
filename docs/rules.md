@@ -11,6 +11,7 @@ in the batch and streaming runners. All data is synthetic.
 | `amount_spike` | its amount is more than `multiplier` times the account's average earlier amount | `multiplier=4.0`, `min_history=5` | the account has fewer than `min_history` earlier transactions |
 | `geo_mismatch` | its country differs from the account's most common earlier country | `min_history=5` | the account has fewer than `min_history` earlier transactions |
 | `dormant_reactivation` | the gap since the account's previous transaction is at least `dormant_days` | `dormant_days=14` | the account has no earlier transactions |
+| `high_amount` | its amount is strictly above `threshold` (not in the default batch rule set) | `threshold=5000.0` | never; needs no history |
 
 Constructors raise `ValueError` for out-of-range parameters (for example
 `multiplier <= 1` or `min_count < 2`).
