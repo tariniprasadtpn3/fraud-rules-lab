@@ -46,6 +46,17 @@ lands.
 6. [x] Evaluation metrics (precision and recall)
 7. [x] Docs and examples (`docs/usage.md`, `examples/end_to_end.py`)
 
+## Streamlit UI
+
+```
+pip install -r requirements.txt
+streamlit run streamlit_app.py
+```
+
+Pick the seed, data size, active rules and the minimum number of rules that
+must agree, then see precision/recall per rule and the flagged transactions
+(with a CSV download). The logic lives in `src/ui` and is unit tested.
+
 ## Running the tests
 
 ```
