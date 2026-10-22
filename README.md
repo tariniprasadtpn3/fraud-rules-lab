@@ -31,7 +31,7 @@ fraud-rules-lab/
 
 ## Status
 
-All roadmap steps are done (extra generic rules `high_amount`, `night_hours`, `round_amount`, `new_category` and `repeat_amount` are also available); see `docs/usage.md` and run `python -m examples.end_to_end` for a demo. The synthetic transaction generator (`src/generator`, see
+All roadmap steps are done (extra generic rules `high_amount`, `night_hours`, `round_amount`, `new_category`, `repeat_amount` and `country_hop` are also available); see `docs/usage.md` and run `python -m examples.end_to_end` for a demo. The synthetic transaction generator (`src/generator`, see
 `docs/generator.md`) and the rule interface with the rules velocity, amount
 spike, geo mismatch and dormant-account reactivation (`src/rules`), the batch runner (`src/batch`, `run_batch`) and the streaming-style runner (`src/stream`, `StreamProcessor`, `run_stream`) and the evaluation metrics (`src/evaluation`, `evaluate`: overall and per-rule precision, recall and F1) are done. Other folders are added as the corresponding code
 lands.

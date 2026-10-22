@@ -16,6 +16,7 @@ in the batch and streaming runners. All data is synthetic.
 | `round_amount` | its amount is at least `min_amount` and an exact multiple of `step` (not in the default batch rule set) | `step=500.0`, `min_amount=1000.0` | the amount is below `min_amount` or not a multiple of `step`; needs no history |
 | `new_category` | its merchant category never appears in the account's earlier transactions (not in the default batch rule set) | `min_history=10` | the account has fewer than `min_history` earlier transactions or the category was used before |
 | `repeat_amount` | an earlier transaction of the same account has exactly the same amount and is at most `window` older (not in the default batch rule set) | `window=10 minutes` | no earlier same-amount transaction falls inside the window; needs no history |
+| `country_hop` | the previous transaction of the same account was in a different country and is at most `window` older (not in the default batch rule set) | `window=2 hours` | same country as the previous transaction, or the gap exceeds the window; needs no history |
 
 Constructors raise `ValueError` for out-of-range parameters (for example
 `multiplier <= 1` or `min_count < 2`).
