@@ -14,6 +14,7 @@ in the batch and streaming runners. All data is synthetic.
 | `high_amount` | its amount is strictly above `threshold` (not in the default batch rule set) | `threshold=5000.0` | never; needs no history |
 | `night_hours` | its hour of day is in `[start_hour, end_hour)`, wrapping past midnight if `start_hour > end_hour` (not in the default batch rule set) | `start_hour=1`, `end_hour=5` | never; needs no history |
 | `round_amount` | its amount is at least `min_amount` and an exact multiple of `step` (not in the default batch rule set) | `step=500.0`, `min_amount=1000.0` | the amount is below `min_amount` or not a multiple of `step`; needs no history |
+| `new_category` | its merchant category never appears in the account's earlier transactions (not in the default batch rule set) | `min_history=10` | the account has fewer than `min_history` earlier transactions or the category was used before |
 
 Constructors raise `ValueError` for out-of-range parameters (for example
 `multiplier <= 1` or `min_count < 2`).
