@@ -25,7 +25,22 @@ VELOCITY = "velocity"
 AMOUNT_SPIKE = "amount_spike"
 GEO_MISMATCH = "geo_mismatch"
 DORMANT_REACTIVATION = "dormant_reactivation"
-PATTERNS = (VELOCITY, AMOUNT_SPIKE, GEO_MISMATCH, DORMANT_REACTIVATION)
+REPEAT_AMOUNT = "repeat_amount"
+COUNTRY_HOP = "country_hop"
+ROUND_AMOUNT = "round_amount"
+NEW_CATEGORY = "new_category"
+#: Category used only by injected new-category fraud; normal traffic never uses it.
+RARE_CATEGORY = "gambling"
+PATTERNS = (
+    VELOCITY,
+    AMOUNT_SPIKE,
+    GEO_MISMATCH,
+    DORMANT_REACTIVATION,
+    REPEAT_AMOUNT,
+    COUNTRY_HOP,
+    ROUND_AMOUNT,
+    NEW_CATEGORY,
+)
 
 DEFAULT_START = datetime(2026, 1, 1)
 
@@ -156,6 +171,32 @@ def _inject(
         # A large purchase on the last day, long after the account went quiet.
         ts = start + timedelta(days=days - 1, seconds=rng.randint(0, 86399))
         return [fraud(ts, mean * rng.uniform(10.0, 20.0), home, rng.choice(CATEGORIES))]
+
+    if pattern == REPEAT_AMOUNT:
+        # A normal purchase followed within minutes by the exact same amount again.
+        ts = start + timedelta(seconds=rng.randint(86400, (days - 1) * 86400))
+        amount = mean * rng.uniform(0.3, 1.7)
+        category = rng.choice(CATEGORIES)
+        first = Transaction("", account_id, ts, round(amount, 2), category, home)
+        return [first, fraud(ts + timedelta(seconds=rng.randint(30, 540)), amount, home, category)]
+
+    if pattern == COUNTRY_HOP:
+        # A home purchase, then one abroad well inside two hours.
+        foreign = rng.choice([c for c in COUNTRIES if c != home])
+        ts = start + timedelta(seconds=rng.randint(86400, (days - 1) * 86400))
+        first = Transaction("", account_id, ts, round(mean * rng.uniform(0.3, 1.7), 2), "dining", home)
+        later = ts + timedelta(minutes=rng.randint(10, 90))
+        return [first, fraud(later, mean * rng.uniform(0.3, 1.7), foreign, "travel")]
+
+    if pattern == ROUND_AMOUNT:
+        # A large purchase landing exactly on a multiple of 500.
+        ts = start + timedelta(seconds=rng.randint(86400, (days - 1) * 86400))
+        return [fraud(ts, 500.0 * rng.randint(3, 8), home, rng.choice(CATEGORIES))]
+
+    if pattern == NEW_CATEGORY:
+        # A purchase in a category the account has never used, late in the period.
+        ts = start + timedelta(days=days - 1, seconds=rng.randint(0, 86399))
+        return [fraud(ts, mean * rng.uniform(0.3, 1.7), home, RARE_CATEGORY)]
 
     raise ValueError(f"unknown pattern: {pattern}")
 

@@ -38,6 +38,14 @@ Selected accounts each receive exactly one pattern, cycling through the list.
 | `amount_spike` | One purchase 15-30x the account's typical amount |
 | `geo_mismatch` | One purchase in a country other than the account's home |
 | `dormant_reactivation` | A large purchase on the last day after weeks of silence |
+| `repeat_amount` | A normal purchase, then the exact same amount again within 9 minutes (only the repeat is labelled fraud) |
+| `country_hop` | A home purchase, then one abroad 10-90 minutes later (only the foreign one is labelled fraud) |
+| `round_amount` | One purchase of exactly 1500-4000 in steps of 500 |
+| `new_category` | A last-day purchase in the `gambling` category, which normal traffic never uses |
+
+`high_amount` and `night_hours` have no injected pattern: normal traffic can
+legitimately exceed a fixed ceiling or fall in night hours, so they are noisy
+by design and show up with low precision in the evaluation.
 
 Normal traffic stays in the account's home country and within 0.3-1.7x its
 typical amount, so each pattern is a clean signal for the matching rule.

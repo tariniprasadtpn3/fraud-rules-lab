@@ -114,3 +114,17 @@ def test_write_csv_round_trip(tmp_path):
     lines = out.read_text().splitlines()
     assert lines[0].startswith("txn_id,account_id,timestamp")
     assert len(lines) == len(txns) + 1
+
+
+def test_new_patterns_are_injected_with_expected_shape():
+    from src.generator import RARE_CATEGORY
+
+    txns = generate_transactions(n_accounts=100, days=30, fraud_account_ratio=0.5, seed=3)
+    by_pattern = {}
+    for t in txns:
+        if t.is_fraud:
+            by_pattern.setdefault(t.fraud_pattern, []).append(t)
+    assert {"repeat_amount", "country_hop", "round_amount", "new_category"} <= set(by_pattern)
+    assert all(t.amount % 500 == 0 and t.amount >= 1500 for t in by_pattern["round_amount"])
+    assert all(t.merchant_category == RARE_CATEGORY for t in by_pattern["new_category"])
+    assert not any(t.merchant_category == RARE_CATEGORY for t in txns if not t.is_fraud)

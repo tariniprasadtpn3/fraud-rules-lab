@@ -56,4 +56,6 @@ def test_flags_injected_mismatches_and_no_normal_traffic():
             flagged.append(t)
         prior.append(t)
     assert flagged
-    assert all(t.fraud_pattern == GEO_MISMATCH for t in flagged)
+    # country_hop fraud is also made abroad, so it legitimately trips this rule too.
+    assert all(t.fraud_pattern in (GEO_MISMATCH, "country_hop") for t in flagged)
+    assert any(t.fraud_pattern == GEO_MISMATCH for t in flagged)
