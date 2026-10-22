@@ -5,6 +5,7 @@ from .geo_mismatch import GeoMismatchRule
 from .high_amount import HighAmountRule
 from .new_category import NewCategoryRule
 from .night_hours import NightHoursRule
+from .repeat_amount import RepeatAmountRule
 from .round_amount import RoundAmountRule
 from .velocity import VelocityRule
 
@@ -15,6 +16,7 @@ __all__ = [
     "HighAmountRule",
     "NewCategoryRule",
     "NightHoursRule",
+    "RepeatAmountRule",
     "RoundAmountRule",
     "Rule",
     "VelocityRule",
