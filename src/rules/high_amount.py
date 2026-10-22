@@ -13,7 +13,7 @@ class HighAmountRule(Rule):
     """Flag a transaction whose amount is strictly above `threshold`.
 
     Unlike the amount spike rule this needs no history, so it also covers
-    brand-new accounts. It is not part of the default batch rule set.
+    brand-new accounts.
     """
 
     name = "high_amount"

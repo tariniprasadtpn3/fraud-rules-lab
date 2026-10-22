@@ -15,7 +15,7 @@ class RoundAmountRule(Rule):
 
     Genuine purchases rarely land on perfectly round large values, while
     manually keyed or scripted transfers often do. It needs no history and is
-    not part of the default batch rule set.
+
     """
 
     name = "round_amount"

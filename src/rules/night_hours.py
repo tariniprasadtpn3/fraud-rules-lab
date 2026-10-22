@@ -13,7 +13,7 @@ class NightHoursRule(Rule):
     """Flag a transaction whose hour of day falls in [`start_hour`, `end_hour`).
 
     The window may wrap past midnight (for example 23 to 5). It needs no
-    history and is not part of the default batch rule set.
+    history.
     """
 
     name = "night_hours"

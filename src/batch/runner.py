@@ -16,8 +16,14 @@ from typing import Dict, Iterable, List, Sequence, Tuple
 from src.generator import Transaction
 from src.rules import (
     AmountSpikeRule,
+    CountryHopRule,
     DormantReactivationRule,
     GeoMismatchRule,
+    HighAmountRule,
+    NewCategoryRule,
+    NightHoursRule,
+    RepeatAmountRule,
+    RoundAmountRule,
     Rule,
     VelocityRule,
 )
@@ -31,9 +37,21 @@ class FlaggedTransaction:
     rules: Tuple[str, ...]
 
 
+def core_rules() -> List[Rule]:
+    """Return only the four original rules (velocity, amount spike, geo mismatch, dormant)."""
+    return [VelocityRule(), AmountSpikeRule(), GeoMismatchRule(), DormantReactivationRule()]
+
+
 def default_rules() -> List[Rule]:
     """Return one instance of every rule with its default settings."""
-    return [VelocityRule(), AmountSpikeRule(), GeoMismatchRule(), DormantReactivationRule()]
+    return core_rules() + [
+        HighAmountRule(),
+        NightHoursRule(),
+        RoundAmountRule(),
+        NewCategoryRule(),
+        RepeatAmountRule(),
+        CountryHopRule(),
+    ]
 
 
 def run_batch(

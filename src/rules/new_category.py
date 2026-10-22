@@ -14,8 +14,7 @@ class NewCategoryRule(Rule):
     the account's earlier transactions.
 
     Accounts with fewer than `min_history` earlier transactions are never
-    flagged, because every category looks new to a young account. It is not
-    part of the default batch rule set.
+    flagged, because every category looks new to a young account.
     """
 
     name = "new_category"

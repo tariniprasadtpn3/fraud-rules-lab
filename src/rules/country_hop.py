@@ -15,7 +15,7 @@ class CountryHopRule(Rule):
     immediately preceding transaction, when the two are at most `window` apart
     (physically implausible travel, a generic "impossible travel" check).
 
-    It is not part of the default batch rule set and needs no minimum history.
+    It needs no minimum history.
     """
 
     name = "country_hop"

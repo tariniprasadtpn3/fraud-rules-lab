@@ -1,3 +1,3 @@
-from .runner import FlaggedTransaction, default_rules, run_batch, write_flagged_csv
+from .runner import FlaggedTransaction, core_rules, default_rules, run_batch, write_flagged_csv
 
-__all__ = ["FlaggedTransaction", "default_rules", "run_batch", "write_flagged_csv"]
+__all__ = ["FlaggedTransaction", "core_rules", "default_rules", "run_batch", "write_flagged_csv"]

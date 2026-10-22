@@ -15,7 +15,7 @@ class RepeatAmountRule(Rule):
     of the same account made within `window` (card-testing / duplicate charge
     pattern).
 
-    It is not part of the default batch rule set and needs no minimum history.
+    It needs no minimum history.
     """
 
     name = "repeat_amount"

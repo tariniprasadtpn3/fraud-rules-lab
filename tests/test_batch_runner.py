@@ -1,7 +1,7 @@
 import csv
 from datetime import datetime, timedelta
 
-from src.batch import FlaggedTransaction, default_rules, run_batch, write_flagged_csv
+from src.batch import FlaggedTransaction, core_rules, default_rules, run_batch, write_flagged_csv
 from src.generator import generate_transactions, Transaction
 from src.rules import VelocityRule
 
@@ -12,10 +12,18 @@ def _txn(seconds: int, i: int, acc: str = "ACC0001") -> Transaction:
     return Transaction(f"T{i}", acc, T0 + timedelta(seconds=seconds), 100.0, "dining", "IN")
 
 
-def test_default_rules_cover_all_four_rules():
-    assert {r.name for r in default_rules()} == {
-        "velocity", "amount_spike", "geo_mismatch", "dormant_reactivation",
-    }
+CORE = {"velocity", "amount_spike", "geo_mismatch", "dormant_reactivation"}
+EXTRA = {"high_amount", "night_hours", "round_amount", "new_category", "repeat_amount", "country_hop"}
+
+
+def test_core_rules_are_the_four_original_rules():
+    assert {r.name for r in core_rules()} == CORE
+
+
+def test_default_rules_include_core_and_extra_rules():
+    names = [r.name for r in default_rules()]
+    assert set(names) == CORE | EXTRA
+    assert len(names) == len(set(names))
 
 
 def test_flags_velocity_burst_and_reports_rule_name():
