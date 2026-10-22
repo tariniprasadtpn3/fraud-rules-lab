@@ -52,3 +52,34 @@ def test_write_flagged_csv(tmp_path):
     write_flagged_csv(flagged, out)
     rows = list(csv.DictReader(out.open()))
     assert rows[0]["txn_id"] == "T3" and rows[0]["rules"] == "velocity"
+
+
+def test_min_rules_requires_several_rules_to_agree():
+    from src.rules import HighAmountRule, RoundAmountRule
+
+    txns = [
+        Transaction("T1", "ACC0001", T0, 6000.0, "dining", "IN"),  # high + round
+        Transaction("T2", "ACC0002", T0, 6001.0, "dining", "IN"),  # high only
+    ]
+    rules = [HighAmountRule(), RoundAmountRule()]
+    assert [f.txn.txn_id for f in run_batch(txns, rules)] == ["T1", "T2"]
+    both = run_batch(txns, rules, min_rules=2)
+    assert [f.txn.txn_id for f in both] == ["T1"]
+    assert both[0].rules == ("high_amount", "round_amount")
+
+
+def test_min_rules_rejects_zero():
+    import pytest
+
+    with pytest.raises(ValueError):
+        run_batch([], min_rules=0)
+
+
+def test_min_rules_raises_precision_on_generated_data():
+    from src.evaluation import evaluate
+
+    txns = generate_transactions(seed=42)
+    loose = evaluate(txns, run_batch(txns))["overall"]
+    strict = evaluate(txns, run_batch(txns, min_rules=2))["overall"]
+    assert strict.precision >= loose.precision
+    assert strict.tp + strict.fp < loose.tp + loose.fp

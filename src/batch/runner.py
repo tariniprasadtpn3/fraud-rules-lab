@@ -55,9 +55,15 @@ def default_rules() -> List[Rule]:
 
 
 def run_batch(
-    transactions: Iterable[Transaction], rules: Sequence[Rule] | None = None
+    transactions: Iterable[Transaction], rules: Sequence[Rule] | None = None, min_rules: int = 1
 ) -> List[FlaggedTransaction]:
-    """Apply `rules` to `transactions` and return the flagged ones in time order."""
+    """Apply `rules` to `transactions` and return the flagged ones in time order.
+
+    A transaction is only reported when at least `min_rules` rules fire on it,
+    so raising `min_rules` trades recall for precision.
+    """
+    if min_rules < 1:
+        raise ValueError("min_rules must be at least 1")
     active = list(rules) if rules is not None else default_rules()
     ordered = sorted(transactions, key=lambda t: (t.timestamp, t.txn_id))
 
@@ -66,7 +72,7 @@ def run_batch(
     for txn in ordered:
         past = history[txn.account_id]
         fired = tuple(rule.name for rule in active if rule.evaluate(txn, past))
-        if fired:
+        if len(fired) >= min_rules:
             flagged.append(FlaggedTransaction(txn, fired))
         past.append(txn)
     return flagged

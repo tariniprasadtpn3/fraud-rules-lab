@@ -22,6 +22,20 @@ flagged = run_batch(txns)            # or: list(run_stream(sorted_txns))
 metrics = evaluate(txns, flagged)    # {"overall": Metrics, "<rule>": Metrics, ...}
 ```
 
+## Requiring several rules to agree
+
+All ten rules run by default, and the noisy ones (`high_amount`, `night_hours`)
+lower overall precision. Pass `min_rules` to `run_batch`, `run_stream` or
+`StreamProcessor` to report a transaction only when at least that many rules
+fire on it:
+
+```python
+flagged = run_batch(txns, min_rules=2)
+```
+
+Use `core_rules()` for just the original four rules. Compare settings with
+`evaluate` to see the precision/recall trade-off.
+
 See `docs/rules.md` for each rule's parameters and defaults.
 
 ## Adding a rule

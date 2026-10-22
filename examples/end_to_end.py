@@ -13,11 +13,11 @@ from src.generator import generate_transactions
 from src.stream import run_stream
 
 
-def run_demo(seed: int = 42) -> Dict[str, Metrics]:
+def run_demo(seed: int = 42, min_rules: int = 1) -> Dict[str, Metrics]:
     """Run the full pipeline on seeded synthetic data and return the metrics."""
     txns = generate_transactions(n_accounts=50, days=30, fraud_account_ratio=0.2, seed=seed)
-    batch = run_batch(txns)
-    stream = list(run_stream(sorted(txns, key=lambda t: (t.timestamp, t.txn_id))))
+    batch = run_batch(txns, min_rules=min_rules)
+    stream = list(run_stream(sorted(txns, key=lambda t: (t.timestamp, t.txn_id)), min_rules=min_rules))
     if [f.txn.txn_id for f in batch] != [f.txn.txn_id for f in stream]:
         raise RuntimeError("batch and stream runners disagree")
     return evaluate(txns, batch)

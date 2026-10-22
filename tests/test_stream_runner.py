@@ -37,3 +37,22 @@ def test_stream_matches_batch_on_generated_data():
     txns = sorted(generate_transactions(seed=7), key=lambda t: (t.timestamp, t.txn_id))
     streamed = list(run_stream(iter(txns)))
     assert streamed and streamed == run_batch(txns)
+
+
+def test_stream_min_rules_matches_batch():
+    from src.batch import run_batch
+    from src.generator import generate_transactions
+    from src.stream import run_stream
+
+    txns = sorted(generate_transactions(seed=11), key=lambda t: (t.timestamp, t.txn_id))
+    batch = run_batch(txns, min_rules=2)
+    assert batch == list(run_stream(txns, min_rules=2))
+
+
+def test_stream_processor_rejects_bad_min_rules():
+    import pytest
+
+    from src.stream import StreamProcessor
+
+    with pytest.raises(ValueError):
+        StreamProcessor(min_rules=0)
