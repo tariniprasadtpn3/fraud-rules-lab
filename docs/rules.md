@@ -19,7 +19,7 @@ in the batch and streaming runners. All data is synthetic.
 | `card_testing` | amount is at most `max_amount` and at least `min_count - 1` earlier transactions of at most `max_amount` fall inside `window` | `max_amount=5.0`, `min_count=3`, `window=10 minutes` | fewer small transactions in the window, or the current amount is above `max_amount`; not in the default batch set |
 | `country_hop` | the previous transaction of the same account was in a different country and is at most `window` older | `window=2 hours` | same country as the previous transaction, or the gap exceeds the window; needs no history |
 
-All ten rules are in `default_rules()`; `core_rules()` returns just the first four.
+Ten of the eleven rules are in `default_rules()` (`card_testing` is opt-in: pass `CardTestingRule()` in `rules=`); `core_rules()` returns just the first four.
 
 Constructors raise `ValueError` for out-of-range parameters (for example
 `multiplier <= 1` or `min_count < 2`).
