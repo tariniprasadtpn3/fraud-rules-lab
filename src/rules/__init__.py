@@ -2,6 +2,7 @@ from .amount_spike import AmountSpikeRule
 from .base import Rule
 from .card_testing import CardTestingRule
 from .country_hop import CountryHopRule
+from .cumulative_spend import CumulativeSpendRule
 from .dormant_reactivation import DormantReactivationRule
 from .geo_mismatch import GeoMismatchRule
 from .high_amount import HighAmountRule
@@ -15,6 +16,7 @@ __all__ = [
     "AmountSpikeRule",
     "CardTestingRule",
     "CountryHopRule",
+    "CumulativeSpendRule",
     "DormantReactivationRule",
     "GeoMismatchRule",
     "HighAmountRule",
