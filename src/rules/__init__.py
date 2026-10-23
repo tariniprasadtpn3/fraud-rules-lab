@@ -1,5 +1,6 @@
 from .amount_spike import AmountSpikeRule
 from .base import Rule
+from .card_testing import CardTestingRule
 from .country_hop import CountryHopRule
 from .dormant_reactivation import DormantReactivationRule
 from .geo_mismatch import GeoMismatchRule
@@ -12,6 +13,7 @@ from .velocity import VelocityRule
 
 __all__ = [
     "AmountSpikeRule",
+    "CardTestingRule",
     "CountryHopRule",
     "DormantReactivationRule",
     "GeoMismatchRule",
