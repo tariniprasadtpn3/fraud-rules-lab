@@ -19,8 +19,9 @@ in the batch and streaming runners. All data is synthetic.
 | `card_testing` | amount is at most `max_amount` and at least `min_count - 1` earlier transactions of at most `max_amount` fall inside `window` | `max_amount=5.0`, `min_count=3`, `window=10 minutes` | fewer small transactions in the window, or the current amount is above `max_amount`; not in the default batch set |
 | `cumulative_spend` | its amount plus the account's earlier spend within `window` is strictly above `limit` | `limit=10000.0`, `window=24 hours` | total spend in the window is at or below `limit`; needs no history; not in the default batch set |
 | `country_hop` | the previous transaction of the same account was in a different country and is at most `window` older | `window=2 hours` | same country as the previous transaction, or the gap exceeds the window; needs no history |
+| `category_burst` | counting itself, the account used at least `min_categories` distinct merchant categories within `window` | `min_categories=4`, `window=1 hour` | fewer distinct categories in the window; needs no history; not in the default batch set |
 
-Ten of the twelve rules are in `default_rules()` (`card_testing` and `cumulative_spend` are opt-in: pass `CardTestingRule()` or `CumulativeSpendRule()` in `rules=`); `core_rules()` returns just the first four.
+Ten of the thirteen rules are in `default_rules()` (`card_testing`, `cumulative_spend` and `category_burst` are opt-in: pass `CardTestingRule()`, `CumulativeSpendRule()` or `CategoryBurstRule()` in `rules=`); `core_rules()` returns just the first four.
 
 Constructors raise `ValueError` for out-of-range parameters (for example
 `multiplier <= 1` or `min_count < 2`).

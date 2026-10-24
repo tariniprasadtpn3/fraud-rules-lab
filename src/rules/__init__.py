@@ -1,5 +1,6 @@
 from .amount_spike import AmountSpikeRule
 from .base import Rule
+from .category_burst import CategoryBurstRule
 from .card_testing import CardTestingRule
 from .country_hop import CountryHopRule
 from .cumulative_spend import CumulativeSpendRule
@@ -15,6 +16,7 @@ from .velocity import VelocityRule
 __all__ = [
     "AmountSpikeRule",
     "CardTestingRule",
+    "CategoryBurstRule",
     "CountryHopRule",
     "CumulativeSpendRule",
     "DormantReactivationRule",
