@@ -1,4 +1,5 @@
 from .amount_spike import AmountSpikeRule
+from .amount_zscore import AmountZScoreRule
 from .base import Rule
 from .category_burst import CategoryBurstRule
 from .card_testing import CardTestingRule
@@ -16,6 +17,7 @@ from .velocity import VelocityRule
 
 __all__ = [
     "AmountSpikeRule",
+    "AmountZScoreRule",
     "CardTestingRule",
     "CategoryBurstRule",
     "CountryHopRule",
