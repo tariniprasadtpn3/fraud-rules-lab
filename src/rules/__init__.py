@@ -8,6 +8,7 @@ from .dormant_reactivation import DormantReactivationRule
 from .geo_mismatch import GeoMismatchRule
 from .high_amount import HighAmountRule
 from .new_category import NewCategoryRule
+from .new_country import NewCountryRule
 from .night_hours import NightHoursRule
 from .repeat_amount import RepeatAmountRule
 from .round_amount import RoundAmountRule
@@ -23,6 +24,7 @@ __all__ = [
     "GeoMismatchRule",
     "HighAmountRule",
     "NewCategoryRule",
+    "NewCountryRule",
     "NightHoursRule",
     "RepeatAmountRule",
     "RoundAmountRule",
