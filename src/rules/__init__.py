@@ -10,6 +10,7 @@ from .geo_mismatch import GeoMismatchRule
 from .high_amount import HighAmountRule
 from .new_category import NewCategoryRule
 from .new_country import NewCountryRule
+from .new_max_amount import NewMaxAmountRule
 from .night_hours import NightHoursRule
 from .repeat_amount import RepeatAmountRule
 from .round_amount import RoundAmountRule
@@ -27,6 +28,7 @@ __all__ = [
     "HighAmountRule",
     "NewCategoryRule",
     "NewCountryRule",
+    "NewMaxAmountRule",
     "NightHoursRule",
     "RepeatAmountRule",
     "RoundAmountRule",
