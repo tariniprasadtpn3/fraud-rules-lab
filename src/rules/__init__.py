@@ -1,3 +1,4 @@
+from .amount_escalation import AmountEscalationRule
 from .amount_spike import AmountSpikeRule
 from .amount_zscore import AmountZScoreRule
 from .base import Rule
@@ -17,6 +18,7 @@ from .round_amount import RoundAmountRule
 from .velocity import VelocityRule
 
 __all__ = [
+    "AmountEscalationRule",
     "AmountSpikeRule",
     "AmountZScoreRule",
     "CardTestingRule",
