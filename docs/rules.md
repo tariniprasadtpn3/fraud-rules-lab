@@ -24,8 +24,9 @@ in the batch and streaming runners. All data is synthetic.
 | `new_max_amount` | its amount exceeds `factor` times the largest earlier amount of the account | `factor=1.5`, `min_history=5` | the account has fewer than `min_history` earlier transactions or the amount is within the limit; not in the default batch set |
 | `amount_escalation` | the last `steps` amounts (including this one) each grow by at least `min_growth` times | `steps=3`, `min_growth=1.3` | fewer than `steps - 1` earlier transactions or growth too small; not in the default batch set |
 | `amount_zscore` | its amount is more than `threshold` standard deviations above the mean of the account's earlier amounts | `threshold=3.0`, `min_history=10` | the account has fewer than `min_history` earlier transactions or its earlier amounts all equal; not in the default batch set |
+| `weekend_high_amount` | it happens on a Saturday or Sunday and its amount is at least `threshold` | `threshold=500.0` | weekday, or amount below `threshold`; needs no history; not in the default batch set |
 
-Ten of the seventeen rules are in `default_rules()` (`card_testing`, `cumulative_spend`, `category_burst`, `new_country`, `amount_zscore`, `new_max_amount` and `amount_escalation` are opt-in: pass `CardTestingRule()`, `CumulativeSpendRule()`, `CategoryBurstRule()`, `NewCountryRule()`, `AmountZScoreRule()`, `NewMaxAmountRule()` or `AmountEscalationRule()` in `rules=`); `core_rules()` returns just the first four.
+Ten of the eighteen rules are in `default_rules()` (`card_testing`, `cumulative_spend`, `category_burst`, `new_country`, `amount_zscore`, `new_max_amount`, `amount_escalation` and `weekend_high_amount` are opt-in: pass `CardTestingRule()`, `CumulativeSpendRule()`, `CategoryBurstRule()`, `NewCountryRule()`, `AmountZScoreRule()`, `NewMaxAmountRule()`, `AmountEscalationRule()` or `WeekendHighAmountRule()` in `rules=`); `core_rules()` returns just the first four.
 
 Constructors raise `ValueError` for out-of-range parameters (for example
 `multiplier <= 1` or `min_count < 2`).

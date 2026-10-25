@@ -16,6 +16,7 @@ from .night_hours import NightHoursRule
 from .repeat_amount import RepeatAmountRule
 from .round_amount import RoundAmountRule
 from .velocity import VelocityRule
+from .weekend_high_amount import WeekendHighAmountRule
 
 __all__ = [
     "AmountEscalationRule",
@@ -36,4 +37,5 @@ __all__ = [
     "RoundAmountRule",
     "Rule",
     "VelocityRule",
+    "WeekendHighAmountRule",
 ]
