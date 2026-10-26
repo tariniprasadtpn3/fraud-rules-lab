@@ -14,6 +14,7 @@ from .new_category import NewCategoryRule
 from .new_country import NewCountryRule
 from .new_max_amount import NewMaxAmountRule
 from .night_hours import NightHoursRule
+from .rapid_succession import RapidSuccessionRule
 from .repeat_amount import RepeatAmountRule
 from .round_amount import RoundAmountRule
 from .velocity import VelocityRule
@@ -35,6 +36,7 @@ __all__ = [
     "NewCountryRule",
     "NewMaxAmountRule",
     "NightHoursRule",
+    "RapidSuccessionRule",
     "RepeatAmountRule",
     "RoundAmountRule",
     "Rule",
