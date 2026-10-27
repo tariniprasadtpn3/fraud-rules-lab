@@ -14,6 +14,7 @@ from .high_amount import HighAmountRule
 from .new_account_high_amount import NewAccountHighAmountRule
 from .new_category import NewCategoryRule
 from .new_country import NewCountryRule
+from .new_country_high_amount import NewCountryHighAmountRule
 from .new_max_amount import NewMaxAmountRule
 from .new_hour import NewHourRule
 from .night_hours import NightHoursRule
@@ -38,6 +39,7 @@ __all__ = [
     "HighAmountRule",
     "NewAccountHighAmountRule",
     "NewCategoryRule",
+    "NewCountryHighAmountRule",
     "NewCountryRule",
     "NewHourRule",
     "NewMaxAmountRule",
