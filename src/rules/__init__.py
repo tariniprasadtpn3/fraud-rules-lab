@@ -10,6 +10,7 @@ from .dormant_reactivation import DormantReactivationRule
 from .foreign_high_amount import ForeignHighAmountRule
 from .geo_mismatch import GeoMismatchRule
 from .high_amount import HighAmountRule
+from .new_account_high_amount import NewAccountHighAmountRule
 from .new_category import NewCategoryRule
 from .new_country import NewCountryRule
 from .new_max_amount import NewMaxAmountRule
@@ -33,6 +34,7 @@ __all__ = [
     "ForeignHighAmountRule",
     "GeoMismatchRule",
     "HighAmountRule",
+    "NewAccountHighAmountRule",
     "NewCategoryRule",
     "NewCountryRule",
     "NewHourRule",
