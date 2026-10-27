@@ -2,6 +2,7 @@ from .amount_escalation import AmountEscalationRule
 from .amount_spike import AmountSpikeRule
 from .amount_zscore import AmountZScoreRule
 from .base import Rule
+from .category_max_amount import CategoryMaxAmountRule
 from .category_burst import CategoryBurstRule
 from .card_testing import CardTestingRule
 from .country_hop import CountryHopRule
@@ -28,6 +29,7 @@ __all__ = [
     "AmountZScoreRule",
     "CardTestingRule",
     "CategoryBurstRule",
+    "CategoryMaxAmountRule",
     "CountryHopRule",
     "CumulativeSpendRule",
     "DormantReactivationRule",
