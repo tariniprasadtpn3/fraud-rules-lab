@@ -13,6 +13,7 @@ from .geo_mismatch import GeoMismatchRule
 from .high_amount import HighAmountRule
 from .new_account_high_amount import NewAccountHighAmountRule
 from .new_category import NewCategoryRule
+from .new_category_high_amount import NewCategoryHighAmountRule
 from .new_country import NewCountryRule
 from .new_country_high_amount import NewCountryHighAmountRule
 from .new_max_amount import NewMaxAmountRule
@@ -38,6 +39,7 @@ __all__ = [
     "GeoMismatchRule",
     "HighAmountRule",
     "NewAccountHighAmountRule",
+    "NewCategoryHighAmountRule",
     "NewCategoryRule",
     "NewCountryHighAmountRule",
     "NewCountryRule",
