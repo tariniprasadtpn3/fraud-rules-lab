@@ -18,6 +18,7 @@ from .new_country import NewCountryRule
 from .new_country_high_amount import NewCountryHighAmountRule
 from .new_max_amount import NewMaxAmountRule
 from .new_hour import NewHourRule
+from .new_hour_high_amount import NewHourHighAmountRule
 from .night_high_amount import NightHighAmountRule
 from .night_hours import NightHoursRule
 from .rapid_succession import RapidSuccessionRule
@@ -44,6 +45,7 @@ __all__ = [
     "NewCategoryRule",
     "NewCountryHighAmountRule",
     "NewCountryRule",
+    "NewHourHighAmountRule",
     "NewHourRule",
     "NewMaxAmountRule",
     "NightHighAmountRule",
