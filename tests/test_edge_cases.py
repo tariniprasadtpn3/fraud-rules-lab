@@ -95,3 +95,20 @@ def test_high_amount_is_strictly_above_threshold():
     rule = HighAmountRule(threshold=100.0)
     assert rule.evaluate(_txn(1, amount=100.0), []) is False
     assert rule.evaluate(_txn(2, amount=100.01), []) is True
+
+
+def test_every_exported_rule_has_unique_name_documented_in_rules_md():
+    import inspect
+    from pathlib import Path
+
+    import src.rules as rules_pkg
+
+    classes = [
+        getattr(rules_pkg, n) for n in rules_pkg.__all__
+        if n != "Rule" and inspect.isclass(getattr(rules_pkg, n))
+    ]
+    names = [c.name for c in classes]
+    assert len(names) == len(set(names))
+    doc = (Path(__file__).resolve().parent.parent / "docs" / "rules.md").read_text()
+    missing = [n for n in names if f"`{n}`" not in doc]
+    assert missing == []
