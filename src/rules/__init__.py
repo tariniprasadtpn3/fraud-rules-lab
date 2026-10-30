@@ -16,6 +16,7 @@ from .new_category import NewCategoryRule
 from .new_category_high_amount import NewCategoryHighAmountRule
 from .new_country import NewCountryRule
 from .new_country_high_amount import NewCountryHighAmountRule
+from .idle_gap_high_amount import IdleGapHighAmountRule
 from .median_spike import MedianSpikeRule
 from .new_max_amount import NewMaxAmountRule
 from .new_hour import NewHourRule
@@ -42,6 +43,7 @@ __all__ = [
     "ForeignHighAmountRule",
     "GeoMismatchRule",
     "HighAmountRule",
+    "IdleGapHighAmountRule",
     "NewAccountHighAmountRule",
     "NewCategoryHighAmountRule",
     "NewCategoryRule",
