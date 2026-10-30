@@ -16,6 +16,7 @@ from .new_category import NewCategoryRule
 from .new_category_high_amount import NewCategoryHighAmountRule
 from .new_country import NewCountryRule
 from .new_country_high_amount import NewCountryHighAmountRule
+from .median_spike import MedianSpikeRule
 from .new_max_amount import NewMaxAmountRule
 from .new_hour import NewHourRule
 from .new_hour_high_amount import NewHourHighAmountRule
@@ -48,6 +49,7 @@ __all__ = [
     "NewCountryRule",
     "NewHourHighAmountRule",
     "NewHourRule",
+    "MedianSpikeRule",
     "NewMaxAmountRule",
     "NightHighAmountRule",
     "NewWeekdayHighAmountRule",
