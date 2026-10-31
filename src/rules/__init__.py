@@ -8,6 +8,7 @@ from .card_testing import CardTestingRule
 from .country_hop import CountryHopRule
 from .cumulative_spend import CumulativeSpendRule
 from .daily_count import DailyCountRule
+from .daily_spend import DailySpendRule
 from .dormant_reactivation import DormantReactivationRule
 from .foreign_high_amount import ForeignHighAmountRule
 from .geo_mismatch import GeoMismatchRule
@@ -43,6 +44,7 @@ __all__ = [
     "CountryHopRule",
     "CumulativeSpendRule",
     "DailyCountRule",
+    "DailySpendRule",
     "DormantReactivationRule",
     "ForeignHighAmountRule",
     "GeoMismatchRule",

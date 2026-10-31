@@ -40,7 +40,7 @@ in the batch and streaming runners. All data is synthetic.
 | `previous_amount_jump` | its amount is above `min_amount` and at least `ratio` times the account's immediately preceding transaction | `ratio=5.0`, `min_amount=200.0` | the account has no earlier transactions, the amount is within `min_amount` or the step-up is smaller than `ratio`; not in the default batch set |
 | `night_high_amount` | its amount is at least `threshold` and its hour falls in `[start_hour, end_hour)` (may wrap past midnight) | `threshold=300.0`, `start_hour=1`, `end_hour=5` | amount below `threshold` or hour outside the window; needs no history; not in the default batch set |
 
-Ten of the thirty-two rules are in `default_rules()`: the four core rules plus `high_amount`, `night_hours`, `round_amount`, `new_category`, `repeat_amount` and `country_hop`. Every other rule in the table is opt-in: import it from `src.rules` and pass an instance in `rules=`, for example `run_batch(txns, rules=core_rules() + [NewHourHighAmountRule(), CardTestingRule()])`. `core_rules()` returns just the first four.
+Ten of the thirty-three rules are in `default_rules()`: the four core rules plus `high_amount`, `night_hours`, `round_amount`, `new_category`, `repeat_amount` and `country_hop`. Every other rule in the table is opt-in: import it from `src.rules` and pass an instance in `rules=`, for example `run_batch(txns, rules=core_rules() + [NewHourHighAmountRule(), CardTestingRule()])`. `core_rules()` returns just the first four.
 
 Constructors raise `ValueError` for out-of-range parameters (for example
 `multiplier <= 1` or `min_count < 2`).
@@ -61,3 +61,4 @@ flagged = run_batch(txns, rules=[
 Compare settings with `src.evaluation.evaluate` to see the precision/recall
 trade-off of each threshold.
 | `daily_count` | it is at least the `max_per_day`-th transaction of the account on the same calendar day | `max_per_day=8` | fewer same-day transactions, or no earlier transactions; not in the default batch set |
+| `daily_spend` | the account's total spend on the same calendar day, including this transaction, reaches `max_total` | `max_total=2000.0` | lower same-day total; not in the default batch set |
