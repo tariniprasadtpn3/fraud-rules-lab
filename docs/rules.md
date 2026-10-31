@@ -60,3 +60,4 @@ flagged = run_batch(txns, rules=[
 
 Compare settings with `src.evaluation.evaluate` to see the precision/recall
 trade-off of each threshold.
+| `daily_count` | it is at least the `max_per_day`-th transaction of the account on the same calendar day | `max_per_day=8` | fewer same-day transactions, or no earlier transactions; not in the default batch set |

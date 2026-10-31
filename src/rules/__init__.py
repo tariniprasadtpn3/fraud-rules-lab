@@ -7,6 +7,7 @@ from .category_burst import CategoryBurstRule
 from .card_testing import CardTestingRule
 from .country_hop import CountryHopRule
 from .cumulative_spend import CumulativeSpendRule
+from .daily_count import DailyCountRule
 from .dormant_reactivation import DormantReactivationRule
 from .foreign_high_amount import ForeignHighAmountRule
 from .geo_mismatch import GeoMismatchRule
@@ -41,6 +42,7 @@ __all__ = [
     "CategoryMaxAmountRule",
     "CountryHopRule",
     "CumulativeSpendRule",
+    "DailyCountRule",
     "DormantReactivationRule",
     "ForeignHighAmountRule",
     "GeoMismatchRule",
