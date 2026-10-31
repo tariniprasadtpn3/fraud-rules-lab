@@ -25,6 +25,7 @@ from .new_hour_high_amount import NewHourHighAmountRule
 from .night_high_amount import NightHighAmountRule
 from .new_weekday_high_amount import NewWeekdayHighAmountRule
 from .night_hours import NightHoursRule
+from .previous_amount_jump import PreviousAmountJumpRule
 from .rapid_succession import RapidSuccessionRule
 from .repeat_amount import RepeatAmountRule
 from .round_amount import RoundAmountRule
@@ -58,6 +59,7 @@ __all__ = [
     "NightHighAmountRule",
     "NewWeekdayHighAmountRule",
     "NightHoursRule",
+    "PreviousAmountJumpRule",
     "RapidSuccessionRule",
     "RepeatAmountRule",
     "RoundAmountRule",
