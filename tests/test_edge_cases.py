@@ -112,3 +112,25 @@ def test_every_exported_rule_has_unique_name_documented_in_rules_md():
     doc = (Path(__file__).resolve().parent.parent / "docs" / "rules.md").read_text()
     missing = [n for n in names if f"`{n}`" not in doc]
     assert missing == []
+
+
+def test_daily_rules_are_per_account_and_reset_at_midnight_in_batch():
+    from src.rules import DailyCountRule, DailySpendRule
+
+    day1 = datetime(2026, 3, 1, 23, 0, 0)
+    day2 = datetime(2026, 3, 2, 0, 30, 0)
+
+    def mk(i, ts, acc):
+        return Transaction(f"D{i}", acc, ts, 600.0, "dining", "IN")
+
+    txns = [
+        mk(1, day1, "ACC0001"),
+        mk(2, day1 + timedelta(minutes=10), "ACC0002"),  # other account: must not add up
+        mk(3, day2, "ACC0001"),  # next calendar day: total resets
+    ]
+    rules = [DailySpendRule(max_total=1000.0), DailyCountRule(max_per_day=2)]
+    assert run_batch(txns, rules) == []
+
+    txns.append(mk(4, day2 + timedelta(minutes=5), "ACC0001"))  # 1200 on day 2 for ACC0001
+    flagged = run_batch(txns, rules)
+    assert [(f.txn.txn_id, f.rules) for f in flagged] == [("D4", ("daily_spend", "daily_count"))]
