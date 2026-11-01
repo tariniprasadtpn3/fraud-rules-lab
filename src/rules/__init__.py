@@ -11,6 +11,7 @@ from .daily_count import DailyCountRule
 from .daily_spend import DailySpendRule
 from .dormant_reactivation import DormantReactivationRule
 from .foreign_high_amount import ForeignHighAmountRule
+from .foreign_night import ForeignNightRule
 from .geo_mismatch import GeoMismatchRule
 from .high_amount import HighAmountRule
 from .new_account_high_amount import NewAccountHighAmountRule
@@ -47,6 +48,7 @@ __all__ = [
     "DailySpendRule",
     "DormantReactivationRule",
     "ForeignHighAmountRule",
+    "ForeignNightRule",
     "GeoMismatchRule",
     "HighAmountBurstRule",
     "HighAmountRule",
