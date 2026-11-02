@@ -14,6 +14,7 @@ from .foreign_high_amount import ForeignHighAmountRule
 from .foreign_new_category import ForeignNewCategoryRule
 from .foreign_night import ForeignNightRule
 from .foreign_round_amount import ForeignRoundAmountRule
+from .foreign_weekend import ForeignWeekendRule
 from .geo_mismatch import GeoMismatchRule
 from .high_amount import HighAmountRule
 from .new_account_high_amount import NewAccountHighAmountRule
@@ -53,6 +54,7 @@ __all__ = [
     "ForeignNewCategoryRule",
     "ForeignNightRule",
     "ForeignRoundAmountRule",
+    "ForeignWeekendRule",
     "GeoMismatchRule",
     "HighAmountBurstRule",
     "HighAmountRule",
