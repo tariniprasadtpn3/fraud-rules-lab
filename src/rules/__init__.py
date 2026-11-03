@@ -10,6 +10,7 @@ from .cumulative_spend import CumulativeSpendRule
 from .daily_count import DailyCountRule
 from .daily_spend import DailySpendRule
 from .dormant_reactivation import DormantReactivationRule
+from .foreign_amount_spike import ForeignAmountSpikeRule
 from .foreign_burst import ForeignBurstRule
 from .foreign_high_amount import ForeignHighAmountRule
 from .foreign_new_category import ForeignNewCategoryRule
@@ -53,6 +54,7 @@ __all__ = [
     "DailyCountRule",
     "DailySpendRule",
     "DormantReactivationRule",
+    "ForeignAmountSpikeRule",
     "ForeignBurstRule",
     "ForeignHighAmountRule",
     "ForeignNewCategoryRule",
