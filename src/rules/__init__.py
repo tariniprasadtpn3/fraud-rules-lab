@@ -13,6 +13,7 @@ from .dormant_reactivation import DormantReactivationRule
 from .foreign_high_amount import ForeignHighAmountRule
 from .foreign_new_category import ForeignNewCategoryRule
 from .foreign_new_hour import ForeignNewHourRule
+from .foreign_new_weekday import ForeignNewWeekdayRule
 from .foreign_night import ForeignNightRule
 from .foreign_round_amount import ForeignRoundAmountRule
 from .foreign_weekend import ForeignWeekendRule
@@ -54,6 +55,7 @@ __all__ = [
     "ForeignHighAmountRule",
     "ForeignNewCategoryRule",
     "ForeignNewHourRule",
+    "ForeignNewWeekdayRule",
     "ForeignNightRule",
     "ForeignRoundAmountRule",
     "ForeignWeekendRule",
