@@ -12,6 +12,7 @@ from .daily_spend import DailySpendRule
 from .dormant_reactivation import DormantReactivationRule
 from .foreign_amount_spike import ForeignAmountSpikeRule
 from .foreign_burst import ForeignBurstRule
+from .foreign_idle_gap import ForeignIdleGapRule
 from .foreign_high_amount import ForeignHighAmountRule
 from .foreign_new_category import ForeignNewCategoryRule
 from .foreign_new_hour import ForeignNewHourRule
@@ -57,6 +58,7 @@ __all__ = [
     "ForeignAmountSpikeRule",
     "ForeignBurstRule",
     "ForeignHighAmountRule",
+    "ForeignIdleGapRule",
     "ForeignNewCategoryRule",
     "ForeignNewHourRule",
     "ForeignNewWeekdayRule",

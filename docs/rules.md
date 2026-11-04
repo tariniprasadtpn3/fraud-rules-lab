@@ -70,3 +70,4 @@ Compare settings with `src.evaluation.evaluate` to see the precision/recall
 trade-off of each threshold.
 | `daily_count` | it is at least the `max_per_day`-th transaction of the account on the same calendar day | `max_per_day=8` | fewer same-day transactions, or no earlier transactions; not in the default batch set |
 | `daily_spend` | the account's total spend on the same calendar day, including this transaction, reaches `max_total` | `max_total=2000.0` | lower same-day total; not in the default batch set |
+| `foreign_idle_gap` | its country differs from the account's most common country, its amount is at least `min_amount` and it comes at least `gap_days` after the account's previous transaction | `min_amount=100.0`, `gap_days=5`, `min_history=5` | the account has fewer than `min_history` earlier transactions, the amount is small, the gap is shorter, or the country is the home country; not in the default batch set |
