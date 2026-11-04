@@ -56,3 +56,19 @@ def test_stream_processor_rejects_bad_min_rules():
 
     with pytest.raises(ValueError):
         StreamProcessor(min_rules=0)
+
+
+def test_stream_matches_batch_for_every_exported_rule():
+    """Batch and streaming runs agree for each rule, opt-in ones included."""
+    import inspect
+
+    import src.rules as rules_pkg
+
+    rules = [
+        getattr(rules_pkg, n)() for n in rules_pkg.__all__
+        if n != "Rule" and inspect.isclass(getattr(rules_pkg, n))
+    ]
+    assert len(rules) > 40
+    txns = sorted(generate_transactions(seed=3), key=lambda t: (t.timestamp, t.txn_id))
+    for rule in rules:
+        assert list(run_stream(txns, [rule])) == run_batch(txns, [rule]), rule.name
