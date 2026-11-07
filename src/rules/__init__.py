@@ -15,6 +15,7 @@ from .foreign_burst import ForeignBurstRule
 from .foreign_idle_gap import ForeignIdleGapRule
 from .foreign_high_amount import ForeignHighAmountRule
 from .foreign_new_category import ForeignNewCategoryRule
+from .foreign_new_max_amount import ForeignNewMaxAmountRule
 from .foreign_new_hour import ForeignNewHourRule
 from .foreign_new_weekday import ForeignNewWeekdayRule
 from .foreign_night import ForeignNightRule
@@ -61,6 +62,7 @@ __all__ = [
     "ForeignIdleGapRule",
     "ForeignNewCategoryRule",
     "ForeignNewHourRule",
+    "ForeignNewMaxAmountRule",
     "ForeignNewWeekdayRule",
     "ForeignNightRule",
     "ForeignRoundAmountRule",
