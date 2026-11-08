@@ -14,6 +14,7 @@ from .foreign_amount_spike import ForeignAmountSpikeRule
 from .foreign_burst import ForeignBurstRule
 from .foreign_idle_gap import ForeignIdleGapRule
 from .foreign_high_amount import ForeignHighAmountRule
+from .foreign_median_spike import ForeignMedianSpikeRule
 from .foreign_new_category import ForeignNewCategoryRule
 from .foreign_new_max_amount import ForeignNewMaxAmountRule
 from .foreign_repeat_amount import ForeignRepeatAmountRule
@@ -61,6 +62,7 @@ __all__ = [
     "ForeignBurstRule",
     "ForeignHighAmountRule",
     "ForeignIdleGapRule",
+    "ForeignMedianSpikeRule",
     "ForeignNewCategoryRule",
     "ForeignNewHourRule",
     "ForeignNewMaxAmountRule",
