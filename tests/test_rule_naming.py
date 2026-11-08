@@ -16,3 +16,13 @@ def test_rule_names_are_snake_case():
     for cls in RULE_CLASSES:
         assert re.fullmatch(r"[a-z][a-z0-9_]*", cls.name), cls.name
 
+
+
+def test_rule_names_are_unique():
+    names = [cls.name for cls in RULE_CLASSES]
+    assert len(names) == len(set(names))
+
+
+def test_rules_have_docstrings():
+    for cls in RULE_CLASSES:
+        assert inspect.getdoc(cls), cls.__name__
