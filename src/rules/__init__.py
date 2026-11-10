@@ -17,6 +17,7 @@ from .foreign_high_amount import ForeignHighAmountRule
 from .foreign_median_spike import ForeignMedianSpikeRule
 from .foreign_new_category import ForeignNewCategoryRule
 from .foreign_new_max_amount import ForeignNewMaxAmountRule
+from .foreign_daily_count import ForeignDailyCountRule
 from .foreign_previous_amount_jump import ForeignPreviousAmountJumpRule
 from .foreign_repeat_amount import ForeignRepeatAmountRule
 from .foreign_new_hour import ForeignNewHourRule
@@ -67,6 +68,7 @@ __all__ = [
     "ForeignNewCategoryRule",
     "ForeignNewHourRule",
     "ForeignNewMaxAmountRule",
+    "ForeignDailyCountRule",
     "ForeignPreviousAmountJumpRule",
     "ForeignRepeatAmountRule",
     "ForeignNewWeekdayRule",
