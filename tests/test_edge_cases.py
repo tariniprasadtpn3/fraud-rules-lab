@@ -134,3 +134,9 @@ def test_daily_rules_are_per_account_and_reset_at_midnight_in_batch():
     txns.append(mk(4, day2 + timedelta(minutes=5), "ACC0001"))  # 1200 on day 2 for ACC0001
     flagged = run_batch(txns, rules)
     assert [(f.txn.txn_id, f.rules) for f in flagged] == [("D4", ("daily_spend", "daily_count"))]
+
+
+def test_batch_result_does_not_depend_on_input_order():
+    txns = generate_transactions(n_accounts=30, days=30, fraud_account_ratio=0.5, seed=9)
+    shuffled = list(reversed(txns))
+    assert run_batch(shuffled) == run_batch(txns)
