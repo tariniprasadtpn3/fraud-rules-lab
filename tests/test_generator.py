@@ -116,6 +116,26 @@ def test_write_csv_round_trip(tmp_path):
     assert len(lines) == len(txns) + 1
 
 
+def test_write_csv_values_match_transactions(tmp_path):
+    import csv
+    from datetime import datetime
+
+    txns = generate_transactions(n_accounts=5, days=10, fraud_account_ratio=0.6, seed=4)
+    out = tmp_path / "transactions.csv"
+    write_csv(txns, out)
+    with out.open(newline="") as fh:
+        rows = list(csv.DictReader(fh))
+    assert len(rows) == len(txns)
+    for row, t in zip(rows, txns):
+        assert row["txn_id"] == t.txn_id
+        assert row["account_id"] == t.account_id
+        assert datetime.fromisoformat(row["timestamp"]) == t.timestamp
+        assert float(row["amount"]) == pytest.approx(t.amount, abs=0.005)
+        assert row["country"] == t.country
+        assert row["is_fraud"] == str(int(t.is_fraud))
+        assert (row["fraud_pattern"] or None) == t.fraud_pattern
+
+
 def test_new_patterns_are_injected_with_expected_shape():
     from src.generator import RARE_CATEGORY
 
