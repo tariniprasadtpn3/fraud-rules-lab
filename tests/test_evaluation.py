@@ -43,3 +43,17 @@ def test_end_to_end_on_generated_data_has_some_recall():
     res = evaluate(txns, run_batch(txns))
     assert 0.0 < res["overall"].recall <= 1.0
     assert 0.0 <= res["overall"].precision <= 1.0
+
+
+def test_empty_inputs_give_zero_overall_metrics_only():
+    result = evaluate([], [])
+    assert set(result) == {"overall"}
+    assert result["overall"] == Metrics(0, 0, 0)
+
+
+def test_rule_flag_on_legit_txn_is_false_positive_and_missed_fraud_is_fn():
+    txns = [_t(1, fraud=True, pattern="velocity"), _t(2)]
+    flagged = [FlaggedTransaction(txns[1], ("velocity",))]
+    result = evaluate(txns, flagged)
+    assert result["velocity"] == Metrics(tp=0, fp=1, fn=1)
+    assert result["overall"] == Metrics(tp=0, fp=1, fn=1)
