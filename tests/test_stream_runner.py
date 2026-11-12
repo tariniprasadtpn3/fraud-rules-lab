@@ -72,3 +72,21 @@ def test_stream_matches_batch_for_every_exported_rule():
     txns = sorted(generate_transactions(seed=3), key=lambda t: (t.timestamp, t.txn_id))
     for rule in rules:
         assert list(run_stream(txns, [rule])) == run_batch(txns, [rule]), rule.name
+
+
+def test_run_stream_on_empty_input_yields_nothing():
+    assert list(run_stream(iter([]))) == []
+
+
+def test_run_stream_is_lazy():
+    consumed = []
+
+    def source():
+        for i in range(3):
+            consumed.append(i)
+            yield _txn(i * 60, i)
+
+    stream = run_stream(source(), [VelocityRule()])
+    assert consumed == []  # nothing is pulled until the caller iterates
+    assert next(stream).txn.txn_id == "T2"
+    assert consumed == [0, 1, 2]
