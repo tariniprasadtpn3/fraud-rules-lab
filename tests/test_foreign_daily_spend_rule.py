@@ -47,6 +47,17 @@ def test_needs_min_history():
     assert ForeignDailySpendRule(min_history=3).evaluate(now, TODAY) is True
 
 
+def test_total_exactly_at_threshold_is_flagged():
+    now = _txn("US", DAY + timedelta(hours=5), 500.0)
+    assert ForeignDailySpendRule().evaluate(now, OLD + TODAY) is True
+
+
+def test_spend_in_any_country_counts_toward_day_total():
+    abroad_today = [_txn("FR", DAY + timedelta(minutes=i), 500.0) for i in range(3)]
+    now = _txn("US", DAY + timedelta(hours=5), 600.0)
+    assert ForeignDailySpendRule().evaluate(now, OLD + abroad_today) is True
+
+
 def test_invalid_parameters():
     with pytest.raises(ValueError):
         ForeignDailySpendRule(max_total=0)
