@@ -83,3 +83,10 @@ def test_min_rules_raises_precision_on_generated_data():
     strict = evaluate(txns, run_batch(txns, min_rules=2))["overall"]
     assert strict.precision >= loose.precision
     assert strict.tp + strict.fp < loose.tp + loose.fp
+
+
+def test_empty_input_flags_nothing_and_csv_has_only_header(tmp_path):
+    assert run_batch([]) == []
+    out = tmp_path / "empty.csv"
+    write_flagged_csv([], out)
+    assert out.read_text().splitlines() == ["txn_id,account_id,timestamp,amount,country,rules"]
