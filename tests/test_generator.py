@@ -148,3 +148,10 @@ def test_new_patterns_are_injected_with_expected_shape():
     assert all(t.amount % 500 == 0 and t.amount >= 1500 for t in by_pattern["round_amount"])
     assert all(t.merchant_category == RARE_CATEGORY for t in by_pattern["new_category"])
     assert not any(t.merchant_category == RARE_CATEGORY for t in txns if not t.is_fraud)
+
+
+@pytest.mark.parametrize("seed", [0, 1, 42, 2024])
+def test_amounts_positive_and_countries_known_for_any_seed(seed):
+    for t in generate_transactions(seed=seed):
+        assert t.amount > 0
+        assert t.country in COUNTRIES
