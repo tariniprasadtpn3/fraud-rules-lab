@@ -40,3 +40,11 @@ def test_streamlit_app_runs_without_exception():
     at = AppTest.from_file("../streamlit_app.py", default_timeout=60).run()
     assert not at.exception
     assert at.title[0].value == "Fraud rules lab"
+
+
+def test_min_rules_only_keeps_agreeing_transactions_and_never_adds_flags():
+    loose = run_pipeline(seed=5, min_rules=1)
+    strict = run_pipeline(seed=5, min_rules=2)
+    assert all(len(f.rules) >= 2 for f in strict.flagged)
+    assert {f.txn.txn_id for f in strict.flagged} <= {f.txn.txn_id for f in loose.flagged}
+    assert len(strict.flagged) <= len(loose.flagged)
