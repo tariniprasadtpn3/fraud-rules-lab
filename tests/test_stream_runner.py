@@ -90,3 +90,9 @@ def test_run_stream_is_lazy():
     assert consumed == []  # nothing is pulled until the caller iterates
     assert next(stream).txn.txn_id == "T2"
     assert consumed == [0, 1, 2]
+
+
+def test_processor_with_no_rules_never_flags_but_tracks_history():
+    p = StreamProcessor([], max_history=1)
+    assert [p.process(_txn(i * 10, i)) for i in range(3)] == [None, None, None]
+    assert [t.txn_id for t in p._history["ACC0001"]] == ["T2"]
