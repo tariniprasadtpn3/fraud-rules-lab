@@ -65,3 +65,17 @@ def test_perfect_and_all_wrong_metrics_extremes():
 
     all_wrong = Metrics(tp=0, fp=4, fn=3)
     assert (all_wrong.precision, all_wrong.recall, all_wrong.f1) == (0.0, 0.0, 0.0)
+
+
+def test_duplicate_flags_for_same_transaction_are_counted_once():
+    txns = [_t(1, fraud=True, pattern="velocity"), _t(2)]
+    flagged = [
+        FlaggedTransaction(txns[0], ("velocity",)),
+        FlaggedTransaction(txns[0], ("velocity",)),
+        FlaggedTransaction(txns[1], ("amount_spike",)),
+        FlaggedTransaction(txns[1], ("amount_spike",)),
+    ]
+    result = evaluate(txns, flagged)
+    assert result["overall"] == Metrics(tp=1, fp=1, fn=0)
+    assert result["velocity"] == Metrics(tp=1, fp=0, fn=0)
+    assert result["amount_spike"] == Metrics(tp=0, fp=1, fn=0)
