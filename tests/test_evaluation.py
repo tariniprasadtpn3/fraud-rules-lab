@@ -57,3 +57,11 @@ def test_rule_flag_on_legit_txn_is_false_positive_and_missed_fraud_is_fn():
     result = evaluate(txns, flagged)
     assert result["velocity"] == Metrics(tp=0, fp=1, fn=1)
     assert result["overall"] == Metrics(tp=0, fp=1, fn=1)
+
+
+def test_perfect_and_all_wrong_metrics_extremes():
+    perfect = Metrics(tp=5, fp=0, fn=0)
+    assert (perfect.precision, perfect.recall, perfect.f1) == (1.0, 1.0, 1.0)
+
+    all_wrong = Metrics(tp=0, fp=4, fn=3)
+    assert (all_wrong.precision, all_wrong.recall, all_wrong.f1) == (0.0, 0.0, 0.0)
